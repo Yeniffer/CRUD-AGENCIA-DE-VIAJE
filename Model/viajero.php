@@ -56,13 +56,78 @@ class viajero
             die($e->getMessage());
         }
     }
+// elimina la tupla 
+    public function Delete($id_persona)
+    {
+        try
+        {
+            $sql = $this->pdo
+                        ->prepre("DELETE FROM viajero WHERE ID_persona = ?");
+            $sql->execute(array($id_persona)); 
+        }catch(Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
+    //actualiza
+    public function Update($data)
+    {
+        try
+        {
+            $sql = "UPDATE viajero SET
+                        Name = ?,
+                        \"Personal identification\" = ? ,
+                        Address = ?,
+                        phone = ?
+                    WHERE id_persona = ?";
 
+                    $this->pdo->prepare($sql)-> execute(
+                        array(
+                            $data->name,
+                            $data->personal_identification,
+                            $data->address,
+                            $data->phone,
+                            $data->id_persona
+                        )
+                        );
 
+        }catch(Exception $e)
+        {
+            die($e->getMessage());
+        }
 
+    }
+    public function Insert(viajero $data)
+    {
+        try
+		{
+			//Sentencia SQL.
+			$sql = "INSERT INTO viajero (name,`Personal identification`,address,phone)
+		        VALUES (?, ?, ?, ?)";
 
-
-
+			$this->pdo->prepare($sql)
+		     ->execute(
+				array(
+                    $data->name,
+                    $data->personal_identification,
+                    $data->address,
+                    $data->phone,
+                    
+                )
+			);
+		} catch (Exception $e)
+		{
+			die($e->getMessage());
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 

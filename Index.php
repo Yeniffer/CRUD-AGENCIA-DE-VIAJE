@@ -14,7 +14,7 @@ if(!isset($_REQUEST['cont']))
 else
 {
   //obtiene el controlador a cargar
-  $controller = strtolower($_REQUEST['c']);
+  $controller = strtolower($_REQUEST['cont']);
   $accion = isset($_REQUEST['a']) ? $_REQUEST['a']:'Index';
 
   //instancia C
